@@ -25,14 +25,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Wayfinder",
     description:
-      "Helping young people discover meaningful work before they become lost in the system.",
+      "Creating early career pathways for young people navigating uncertain futures.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Wayfinder",
     description:
-      "Helping young people discover meaningful work before they become lost in the system.",
+      "Creating early career pathways for young people navigating uncertain futures.",
   },
 };
 
