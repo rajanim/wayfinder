@@ -70,8 +70,13 @@ const signals = [
   { label: "AI fluency", trend: "+9%", color: "bg-aurora-amber" },
 ];
 
+const tagByFilter = ["", "Mission", "Mentor", "Career", "Creator"];
+
 export default function FeedPage() {
   const [active, setActive] = React.useState(0);
+
+  const visibleFeed =
+    active === 0 ? feed : feed.filter((c) => c.tag === tagByFilter[active]);
 
   return (
     <AppShell title="Discovery Feed" subtitle="Curated for who you're becoming">
@@ -99,7 +104,7 @@ export default function FeedPage() {
           </div>
 
           <div className="mt-6 space-y-4">
-            {feed.map((c, i) => (
+            {visibleFeed.map((c, i) => (
               <motion.article
                 key={c.title}
                 initial={{ opacity: 0, y: 12 }}
