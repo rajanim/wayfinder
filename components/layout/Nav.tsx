@@ -8,9 +8,10 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 
 const links = [
-  { href: "#how", label: "How it works" },
-  { href: "#engine", label: "AI Engine" },
+  { href: "/#how", label: "How it works" },
+  { href: "/#engine", label: "AI Engine" },
   { href: "/preview/feed", label: "Live Preview" },
+  { href: "/about", label: "About" },
 ];
 
 export function Nav() {

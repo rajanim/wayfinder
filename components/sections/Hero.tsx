@@ -40,10 +40,10 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="mt-6 font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] leading-[1.02] tracking-[-0.02em] text-balance"
             >
-              Helping young people{" "}
-              <span className="italic text-white/90">discover</span>{" "}
-              <span className="gradient-text">meaningful work</span> before they
-              become lost in the system.
+              Creating{" "}
+              <span className="italic text-white/90">early career pathways</span>{" "}
+              for young people{" "}
+              <span className="gradient-text">navigating uncertain futures</span>.
             </motion.h1>
 
             <motion.p
