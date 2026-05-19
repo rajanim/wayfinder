@@ -8,10 +8,8 @@ import { cn } from "@/lib/cn";
 import { Button } from "@/components/ui/Button";
 
 const links = [
-  { href: "#product", label: "Product" },
+  { href: "#how", label: "How it works" },
   { href: "#engine", label: "AI Engine" },
-  { href: "#ecosystem", label: "Ecosystem" },
-  { href: "#vision", label: "Vision" },
   { href: "/preview/feed", label: "Live Preview" },
 ];
 

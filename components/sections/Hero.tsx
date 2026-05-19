@@ -52,9 +52,8 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.25 }}
               className="mt-7 max-w-xl text-lg text-white/65 text-pretty"
             >
-              Wayfinder is an AI-powered platform for identity discovery,
-              real-world experiences, mentorship, and career alignment — built
-              for the 14–24 generation, not the system before them.
+              An AI-guided platform for identity, real-world missions, and
+              mentorship — built for ages 14–24.
             </motion.p>
 
             <motion.div

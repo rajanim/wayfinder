@@ -44,7 +44,7 @@ export function Problem() {
                 understand themselves.
               </>
             }
-            description="Education optimizes for memorization. The world optimizes for adaptability. The gap between them is where young potential gets lost."
+            description="School rewards memorization. The world rewards adaptability. The gap is where potential gets lost."
           />
         </Reveal>
 
