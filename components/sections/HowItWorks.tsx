@@ -1,33 +1,96 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowUpRight, Sparkles, Compass, Hammer, Award } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowUpRight, Sparkles, Hammer, Award } from "lucide-react";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
-import { productMockups } from "@/content/landing";
+import { journeySteps } from "@/content/landing";
+import { cn } from "@/lib/cn";
 
-export function ProductExperience() {
+export function HowItWorks() {
+  const ref = React.useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const lineWidth = useTransform(scrollYProgress, [0.1, 0.7], ["0%", "100%"]);
+
+  const toneMap: Record<string, string> = {
+    violet: "from-aurora-violet/40 to-aurora-violet/0 text-aurora-violet",
+    cyan: "from-aurora-cyan/40 to-aurora-cyan/0 text-aurora-cyan",
+    magenta: "from-aurora-magenta/40 to-aurora-magenta/0 text-aurora-magenta",
+    amber: "from-aurora-amber/40 to-aurora-amber/0 text-aurora-amber",
+    mint: "from-aurora-mint/40 to-aurora-mint/0 text-aurora-mint",
+  };
+
   return (
-    <section id="product" className="relative py-32">
+    <section id="how" className="relative py-32" ref={ref}>
       <div className="mx-auto max-w-7xl px-6">
         <Reveal>
           <SectionHeading
-            eyebrow="The product"
+            eyebrow="How it works"
             title={
               <>
-                A premium product layer{" "}
-                <span className="italic text-white/60">around</span> a young
-                person's life.
+                A continuous loop —{" "}
+                <span className="italic text-white/60">not</span> a one-shot{" "}
+                <span className="gradient-text">decision</span>.
               </>
             }
-            description="Discovery, identity, missions, and portfolio — woven into a single, daily product that feels alive."
+            description="Six steps. One product. You move through them on repeat."
             align="center"
           />
         </Reveal>
 
-        <div className="mt-20 grid lg:grid-cols-12 gap-5">
+        <div className="relative mt-20">
+          <div className="absolute top-8 left-0 right-0 h-px bg-white/[0.08] hidden md:block" />
+          <motion.div
+            style={{ width: lineWidth }}
+            className="absolute top-8 left-0 h-px bg-gradient-to-r from-aurora-violet via-aurora-cyan to-aurora-magenta hidden md:block shadow-[0_0_24px_2px_rgba(124,92,255,0.5)]"
+          />
+
+          <ol className="grid gap-5 md:grid-cols-6 md:gap-3">
+            {journeySteps.map((step, i) => (
+              <Reveal key={step.title} delay={i * 0.08}>
+                <li className="relative">
+                  <div className="hidden md:flex items-center justify-center">
+                    <div
+                      className={cn(
+                        "relative z-10 h-16 w-16 rounded-full glass-strong grid place-items-center",
+                        "bg-gradient-to-b",
+                        toneMap[step.tone],
+                      )}
+                    >
+                      <step.icon className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="mt-5 md:text-center">
+                    <div className="md:hidden flex items-center gap-3 mb-3">
+                      <div
+                        className={cn(
+                          "h-10 w-10 rounded-full glass grid place-items-center bg-gradient-to-b",
+                          toneMap[step.tone],
+                        )}
+                      >
+                        <step.icon className="h-5 w-5" />
+                      </div>
+                      <p className="text-[11px] uppercase tracking-[0.18em] text-white/40">
+                        Step {i + 1}
+                      </p>
+                    </div>
+                    <h3 className="font-serif text-2xl text-white">
+                      {step.title}
+                    </h3>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+
+        <div id="product" className="mt-32 grid lg:grid-cols-12 gap-5">
           <Reveal className="lg:col-span-7">
             <MockupFrame title="Discovery Feed" href="/preview/feed">
               <FeedMockup />
@@ -48,22 +111,6 @@ export function ProductExperience() {
               <PortfolioMockup />
             </MockupFrame>
           </Reveal>
-        </div>
-
-        <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {productMockups.map((m) => (
-            <Link
-              key={m.title}
-              href={m.href}
-              className="group glass rounded-2xl p-4 transition hover:bg-white/[0.06]"
-            >
-              <div className="flex items-center justify-between">
-                <p className="text-sm font-medium">{m.title}</p>
-                <ArrowUpRight className="h-4 w-4 text-white/40 group-hover:text-white transition" />
-              </div>
-              <p className="mt-2 text-xs text-white/55 text-pretty">{m.body}</p>
-            </Link>
-          ))}
         </div>
       </div>
     </section>
